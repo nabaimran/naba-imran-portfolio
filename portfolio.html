@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naba Imran | Cybersecurity & Operations Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #071a2f;
+      --navy-soft: #0d2745;
+      --blue: #1d6fe8;
+      --teal: #38c7c2;
+      --gold: #e8c36a;
+      --white: #ffffff;
+      --muted: #aab8c8;
+      --card: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.14);
+      --shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(56, 199, 194, 0.22), transparent 30%),
+        radial-gradient(circle at 80% 0%, rgba(29, 111, 232, 0.25), transparent 35%),
+        linear-gradient(135deg, #071a2f 0%, #081f38 45%, #050f1d 100%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.15));
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(7, 26, 47, 0.72);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.25rem;
+    }
+
+    .logo span {
+      color: var(--teal);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+      padding: 90px 0 60px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .tag::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 16px var(--teal);
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.7rem);
+      line-height: 0.94;
+      letter-spacing: -0.08em;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff, #9dece8, #e8c36a);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 680px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 38px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: 1px solid var(--border);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: white;
+      box-shadow: 0 12px 28px rgba(29, 111, 232, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 700px;
+    }
+
+    .stat-card {
+      padding: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      border-radius: 20px;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.45rem;
+      margin-bottom: 4px;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .profile-card {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      border-radius: 32px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: rgba(56,199,194,0.25);
+      top: -70px;
+      right: -70px;
+      filter: blur(10px);
+    }
+
+    .avatar {
+      height: 260px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, rgba(29,111,232,0.25), rgba(56,199,194,0.16)), rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 20px;
+      border: 1px dashed rgba(255,255,255,0.25);
+      padding: 20px;
+    }
+
+    .profile-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      position: relative;
+    }
+
+    section {
+      padding: 86px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 34px;
+      max-width: 760px;
+    }
+
+    .section-heading span {
+      color: var(--teal);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      letter-spacing: -0.055em;
+      margin: 8px 0 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 26px;
+      padding: 26px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+    }
+
+    .about-grid,
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 24px;
+    }
+
+    .quick-info {
+      display: grid;
+      gap: 12px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-row span:first-child {
+      color: var(--muted);
+    }
+
+    .info-row span:last-child {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      border-left: 3px solid var(--teal);
+      padding-left: 18px;
+    }
+
+    .timeline-item h3 {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+    }
+
+    .timeline-item .meta {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56,199,194,0.5);
+    }
+
+    .project-card h3 {
+      font-size: 1.22rem;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .chip {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(56,199,194,0.12);
+      border: 1px solid rgba(56,199,194,0.25);
+      color: #baf8f5;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .skill-card h3 {
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+
+    .certification-box {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .cert-item {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+    }
+
+    .cert-item h3 {
+      margin-bottom: 6px;
+    }
+
+    .cert-item p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .contact-card {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .contact-card h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      letter-spacing: -0.055em;
+      margin-bottom: 14px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .experience-grid,
+      .certification-box {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid,
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .projects-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .hero {
+        padding-top: 64px;
+      }
+
+      .profile-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#home" class="logo">Naba<span>.</span></a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="tag">Cybersecurity • Digital Forensics • Operations</div>
+          <h1>Naba Imran<br><span class="gradient-text">building secure, organized systems.</span></h1>
+          <p>
+            Cybersecurity undergraduate with hands-on experience in transport operations, executive support, CRM, data handling, student communication, and department coordination. Currently building a focused portfolio across digital forensics, cyber resilience, business operations, and UAE-focused administration.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            <a href="Naba_Imran_Updated_CV.pdf" class="btn btn-secondary" download>Download CV</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <strong>2+ yrs</strong>
+              <span>Operations & admin experience</span>
+            </div>
+            <div class="stat-card">
+              <strong>Cyber</strong>
+              <span>BSc Cybersecurity undergraduate</span>
+            </div>
+            <div class="stat-card">
+              <strong>UAE</strong>
+              <span>Business, CRM & transport exposure</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="profile-card">
+          <div class="avatar">
+            Add your professional photo here<br><br>
+            Recommended: formal/casual blazer photo with clean background.
+          </div>
+          <h3>Portfolio Focus</h3>
+          <p>
+            Digital forensics reports, cyber incident response playbooks, CRM trackers, UAE VAT/admin templates, transport dashboards, and web development projects.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <span>About</span>
+          <h2>A cybersecurity student with real operations experience.</h2>
+          <p>
+            I combine technical learning with practical administrative and operational experience, giving me a strong foundation for roles that require communication, accuracy, data handling, coordination, and problem-solving.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card quick-info">
+            <div class="info-row">
+              <span>Location</span>
+              <span>UAE</span>
+            </div>
+            <div class="info-row">
+              <span>Field</span>
+              <span>Cybersecurity</span>
+            </div>
+            <div class="info-row">
+              <span>Interests</span>
+              <span>Forensics, CRM, Operations</span>
+            </div>
+            <div class="info-row">
+              <span>Tools</span>
+              <span>Excel, Sheets, GitHub, Python</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <p>
+              I am currently pursuing a BSc (Hons) Cybersecurity while working in a university transport and operations environment. My experience includes supporting the Head of Transport and Operations Manager, coordinating student transport communication, managing documentation, assisting with records and reporting, and handling student-facing concerns professionally.
+            </p>
+            <br>
+            <p>
+              My career goal is to build a strong cross-functional profile across cybersecurity, digital forensics, cyber resilience, CRM, business operations, HR/IR awareness, UAE accounting basics, and data-driven administration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <span>Experience</span>
+          <h2>Real-world coordination, communication, and operations support.</h2>
+        </div>
+
+        <div class="experience-grid">
+          <div class="card">
+            <h3>Core strengths</h3>
+            <ul>
+              <li>Executive and administrative support</li>
+              <li>Transport and logistics coordination</li>
+              <li>Student, parent, and staff communication</li>
+              <li>CRM, HR coordination, and record management</li>
+              <li>Spreadsheet reporting and operational tracking</li>
+              <li>Problem-solving under pressure</li>
+            </ul>
+          </div>
+
+          <div class="card timeline">
+            <div class="timeline-item">
+              <h3>Personal Assistant to Head of Transport & Transport/Logistics Assistant</h3>
+              <div class="meta">Bath Spa University, Ras Al Khaimah • Feb 2024 – Present</div>
+              <ul>
+                <li>Support the Head of Transport and Operations Manager with daily coordination, scheduling, documentation, and internal communication.</li>
+                <li>Assist in managing transport operations, bus-related updates, student communication, admin coordination, and issue resolution.</li>
+                <li>Maintain records, spreadsheets, reports, and transport-related operational data with accuracy and confidentiality.</li>
+                <li>Act as a key communication point for students, staff, parents, and stakeholders regarding transport concerns.</li>
+                <li>Strengthened CRM, HR coordination, data entry, reporting, and office management skills through hands-on work.</li>
+              </ul>
+            </div>
+
+            <div class="timeline-item">
+              <h3>Education Committee Member</h3>
+              <div class="meta">Bath Spa University Student Council • Sep 2023 – Jun 2024</div>
+              <ul>
+                <li>Supported academic engagement activities, student communication, workshops, and university-led initiatives.</li>
+                <li>Collaborated with students and faculty to support student concerns and improve participation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <span>Projects</span>
+          <h2>Portfolio projects to prove the skillset.</h2>
+          <p>
+            These projects are designed to turn learning into practical evidence for cybersecurity, digital forensics, operations, CRM, and UAE business/admin roles.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="card project-card">
+            <div>
+              <h3>Digital Forensics Mini Investigation</h3>
+              <p>A structured forensic report using a practice image or dataset, including evidence handling, hashes, findings, screenshots, and conclusion.</p>
+            </div>
+            <div class="chips">
+              <span class="chip">Autopsy</span>
+              <span class="chip">Evidence</span>
+              <span class="chip">Reporting</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div>
+              <h3>Transport Operations Dashboard</h3>
+              <p>A dashboard tracking routes, bus admins, delays, complaints, attendance, and follow-ups using sample transport data.</p>
+            </div>
+            <div class="chips">
+              <span class="chip">Excel</span>
+              <span class="chip">Power BI</span>
+              <span class="chip">Operations</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div>
+              <h3>CRM Student Support Tracker</h3>
+              <p>A CRM-style tracker for managing student issues, priority levels, assigned admins, status updates, and follow-up dates.</p>
+            </div>
+            <div class="chips">
+              <span class="chip">CRM</span>
+              <span class="chip">Sheets</span>
+              <span class="chip">Admin</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div>
+              <h3>UAE VAT Invoice Tracker</h3>
+              <p>An accounting/admin template for invoices, VAT calculation, payment status, due dates, supplier/client details, and summaries.</p>
+            </div>
+            <div class="chips">
+              <span class="chip">VAT</span>
+              <span class="chip">UAE</span>
+              <span class="chip">Excel</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div>
+              <h3>Cyber Incident Response Playbook</h3>
+              <p>A cyber resilience playbook for a university transport department covering phishing, data leaks, unauthorized access, and escalation steps.</p>
+            </div>
+            <div class="chips">
+              <span class="chip">IR</span>
+              <span class="chip">NIST</span>
+              <span class="chip">Cyber</span>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div>
+              <h3>Personal Portfolio Website</h3>
+              <p>This website acts as a professional hub for projects, certifications, case studies, GitHub work, and CV evidence.</p>
+            </div>
+            <div class="chips">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">GitHub</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <span>Skills</span>
+          <h2>A hybrid skillset across security, systems, people, and operations.</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="card skill-card">
+            <h3>Cybersecurity & Forensics</h3>
+            <ul>
+              <li>Cyber hygiene</li>
+              <li>Digital forensics basics</li>
+              <li>Incident response</li>
+              <li>Evidence handling</li>
+            </ul>
+          </div>
+
+          <div class="card skill-card">
+            <h3>Operations & Admin</h3>
+            <ul>
+              <li>Scheduling</li>
+              <li>Documentation</li>
+              <li>Stakeholder communication</li>
+              <li>Records management</li>
+            </ul>
+          </div>
+
+          <div class="card skill-card">
+            <h3>CRM & Business</h3>
+            <ul>
+              <li>CRM systems</li>
+              <li>Student/client support</li>
+              <li>Follow-up tracking</li>
+              <li>Business communication</li>
+            </ul>
+          </div>
+
+          <div class="card skill-card">
+            <h3>Data & Technical</h3>
+            <ul>
+              <li>Excel & Google Sheets</li>
+              <li>Python basics</li>
+              <li>HTML & CSS</li>
+              <li>SQL basics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="container">
+        <div class="section-heading">
+          <span>Certifications</span>
+          <h2>Certifications and learning path.</h2>
+          <p>Currently completing certifications across cybersecurity, digital forensics, CRM, data, UAE tax, HR, and business operations.</p>
+        </div>
+
+        <div class="card certification-box">
+          <div class="cert-item">
+            <h3>Cybersecurity</h3>
+            <p>Cisco, Fortinet, Google Cybersecurity, Harvard CS50 Cybersecurity, TryHackMe, LetsDefend.</p>
+          </div>
+          <div class="cert-item">
+            <h3>Digital Forensics</h3>
+            <p>OpenLearn Digital Forensics, Autopsy practice, Magnet Forensics, CyberDefenders.</p>
+          </div>
+          <div class="cert-item">
+            <h3>CRM & Business</h3>
+            <p>HubSpot Academy, Salesforce Trailhead, LinkedIn Learning, B2B sales and client communication.</p>
+          </div>
+          <div class="cert-item">
+            <h3>UAE Admin & Accounting</h3>
+            <p>UAE VAT basics, corporate tax basics, invoice tracking, business operations, Excel reporting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="card contact-card">
+          <h2>Let’s connect.</h2>
+          <p>
+            Open to internship, part-time, operations, admin, CRM, cybersecurity learning, digital forensics, and business support opportunities in the UAE.
+          </p>
+          <div class="hero-actions" style="justify-content:center; margin-bottom:0;">
+            <a href="mailto:nabaaimrann@gmail.com" class="btn btn-primary">Email Me</a>
+            <a href="https://www.linkedin.com/in/naba-imran-8b6498294/" class="btn btn-secondary">LinkedIn</a>
+            <a href="https://github.com/nabaimran" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Naba Imran. Cybersecurity, Digital Forensics & Operations Portfolio.</p>
+    </div>
+  </footer>
+</body>
+</html>
